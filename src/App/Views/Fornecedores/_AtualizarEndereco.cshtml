@@ -1,0 +1,40 @@
+﻿@model App.ViewModels.FornecedorViewModel
+@{
+	ViewData["Title"] = "Atualizar Endereço";
+}
+
+@* Continuação da view do modal pra edição do endereço *@
+
+<div class="modal-header">
+	<h4 class="modal-title">@ViewData["Title"]</h4>
+	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true"></span><span class="sr-only">Fechar</span>
+	</button>
+</div>
+
+<form asp-action="AtualizarEndereco">
+	<div class="modal-body">
+
+		<input type="hidden" asp-for="Endereco.FornecedorId" />
+		<input type="hidden" asp-for="Endereco.Id" />
+
+		<partial name="_Endereco"></partial>
+
+	</div>
+
+	@*	<div class="modal-footer">
+	<div class="col-md-offset-2 col-md-10">
+	<input type="submit" value="Atualizar Endereço" class="btn btn-success" />
+	<input type="button" value="Fechar" class="btn btn-info" data-bs-dismiss="modal" />
+	</div>
+	</div>*@
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+		@* Lembre-se que por esse botão ser do tipo submit ele aciona implicitamente o método HttpPost
+		* AtualizarEndereco da FornecedoresController, pois o button está dentro do form, e a asp-action
+		* do form é AtualizarEndereco *@
+		<button type="submit" class="btn btn-primary" id="submitMyModal">Atualizar Endereço</button>
+	</div>
+</form>

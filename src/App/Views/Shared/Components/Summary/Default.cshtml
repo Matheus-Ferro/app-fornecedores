@@ -1,0 +1,35 @@
+﻿@* Caso haja algum erro na ModelState *@
+@if (ViewData.ModelState.ErrorCount > 0)
+{
+    <div style="padding-top: 15px;"></div>
+
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h3 id="msgRetorno" style="padding-top: 20px">Opa! Algo deu errado :(</h3>
+        <div style="padding-top: 20px" asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </div>
+}
+
+@* Caso ocorra tudo bem e queira exibir que a operação foi realizada com sucesso 
+ * atraves de um ViewBag, que vem direto da controller. *@
+@if (!string.IsNullOrEmpty(ViewBag.Sucesso))
+{
+    <div style="padding-top: 15px"></div>
+
+    <div id="msg_box" class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h3 id="msgRetorno">@ViewBag.Sucesso</h3>
+    </div>
+}
+
+@* Caso ocorra tudo bem e queira exibir que a operação foi realizada com sucesso 
+ * atraves de um TempData, que é utilizada em caso de redirecionamento. *@
+@if (TempData["Sucesso"] != null)
+{
+    <div style="padding-top: 15px"></div>
+
+    <div id="msg_box" class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <h4 id="msgRetorno">@Html.Raw(TempData["Sucesso"].ToString())</h4>
+    </div>
+}
